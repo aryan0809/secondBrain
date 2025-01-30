@@ -27,7 +27,7 @@ const userSchema= new mongoose.Schema({
 });
 
 const contentSchema= new mongoose.Schema({
-    id:mongoose.Schema.Types.ObjectId,
+    id:mongoose.Types.ObjectId,
     contentType:{
         type:String,
         enum: ["tweet", "youtube", "document", "link"],
@@ -53,10 +53,18 @@ const contentSchema= new mongoose.Schema({
 
 })
 
+const shareSchema= new mongoose.Schema({
+    shareLink:{
+        type:String,
+        required:true
+    },
+    userId:mongoose.Types.ObjectId
+})
 
 
+const ShareModel=mongoose.model("Share",shareSchema);
 const ContentModel= mongoose.model("Content",contentSchema);
 const UserModel = mongoose.model("User", userSchema);
-export  { UserModel, ContentModel};
+export  { UserModel, ContentModel,ShareModel};
 
 
